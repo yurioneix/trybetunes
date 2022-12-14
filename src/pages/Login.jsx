@@ -14,17 +14,6 @@ class Login extends Component {
     console.log('constructor');
   }
 
-  // componentDidMount() {
-  //   const { inputName, loading } = this.state;
-  //   console.log('didMount');
-  //   console.log(`loading antes do request ${loading}`);
-  //   this.setState({ loading: false }, async () => {
-  //     const request = createUser({ name: inputName });
-  //     console.log(request);
-  //   });
-  //   console.log(`loading depois do request ${loading}`);
-  // }
-
   handleChange = ({ target }) => {
     const minLength = 3;
     const { name } = target;
@@ -46,25 +35,8 @@ class Login extends Component {
     await createUser({ name: inputName });
     history.push('/search');
   };
-  //   this.setState({ loading: true });
-
-  //   // const { inputName, loading } = this.state;
-
-  //   // try {
-  //   //   console.log(`loading antes do request ${loading}`);
-  //   //   const request = await createUser({ name: inputName });
-  //   //   if (request === 'OK') {
-  //   //     this.setState({ loading: true });
-  //   //   }
-  //   //   console.log(request);
-  //   //   console.log(`loading depois do request ${loading}`);
-  //   // } catch (error) {
-  //   //   console.log(error);
-  //   // }
-  // };
 
   render() {
-    console.log('render');
     const { isButtonDisabled, inputName, loading } = this.state;
     return (
       <div data-testid="page-login">
@@ -87,9 +59,6 @@ class Login extends Component {
               >
                 Entrar
               </button>
-              {/* <div>
-            { loading ? <Loading /> : <Redirect to="/search" />}
-          </div> */}
             </form>)}
       </div>
     );
