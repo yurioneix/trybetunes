@@ -11,7 +11,6 @@ class Login extends Component {
       inputName: '',
       loading: false,
     };
-    console.log('constructor');
   }
 
   handleChange = ({ target }) => {
