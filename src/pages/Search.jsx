@@ -11,6 +11,7 @@ class Search extends Component {
       inputName: '',
       loading: false,
       resultAlbum: [],
+      resultInput: '',
     };
   }
 
@@ -31,22 +32,26 @@ class Search extends Component {
     const { inputName } = this.state;
 
     this.setState({
+      resultInput: inputName,
       inputName: '',
       loading: true,
-      artistLoading: true,
+      artistLoading: false,
     }, async () => {
       const searchAlbum = await searchAlbumsAPI(inputName);
       this.setState({
         resultAlbum: searchAlbum,
         loading: false,
-        artistLoading: false,
+        artistLoading: true,
+      }, () => {
+
       });
     });
   };
 
   render() {
     const {
-      isButtonDisabled, inputName, loading, resultAlbum, artistLoading } = this.state;
+      isButtonDisabled, inputName, loading, resultAlbum, artistLoading, resultInput } = this.state;
+    const resultElement = `Resultado de álbuns de: ${resultInput}`;
     return (
       <div data-testid="page-search">
         <Header />
@@ -72,7 +77,7 @@ class Search extends Component {
               </button>
             </form>
           )}
-
+        { artistLoading && resultElement }
       </div>
     );
   }
