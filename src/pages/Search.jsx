@@ -50,7 +50,13 @@ class Search extends Component {
 
   render() {
     const {
-      isButtonDisabled, inputName, loading, resultAlbum, artistLoading, resultInput } = this.state;
+      isButtonDisabled,
+      inputName,
+      loading,
+      resultAlbum,
+      artistLoading,
+      resultInput,
+    } = this.state;
     const resultElement = `Resultado de álbuns de: ${resultInput}`;
     return (
       <div data-testid="page-search">
@@ -78,6 +84,14 @@ class Search extends Component {
             </form>
           )}
         { artistLoading && resultElement }
+        <ul>
+          {resultAlbum
+            .map((album) => (
+              <li key={ album.collectionName }>
+                {album.collectionName}
+              </li>))}
+        </ul>
+
       </div>
     );
   }
