@@ -44,6 +44,7 @@ class Login extends Component {
     this.setState({ loading: false }, async () => {
       const request = createUser({ name: inputName });
       console.log(request);
+      this.setState({ loading: true });
     });
     console.log(`loading depois do request ${loading}`);
   };
