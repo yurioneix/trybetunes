@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import searchAlbumsAPI from '../services/searchAlbumsAPI';
 import Loading from './Loading';
@@ -94,7 +95,13 @@ class Search extends Component {
                 {resultAlbum
                   .map((album) => (
                     <li key={ album.collectionName }>
-                      {album.collectionName}
+                      <Link
+                        key={ album.collectionName }
+                        to={ `/album/${album.collectionId}` }
+                        data-testid={ `link-to-album-${album.collectionId}` }
+                      >
+                        {album.collectionName}
+                      </Link>
                     </li>))}
               </ul>
             )
