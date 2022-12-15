@@ -94,9 +94,8 @@ class Search extends Component {
               <ul>
                 {resultAlbum
                   .map((album) => (
-                    <li key={ album.collectionName }>
+                    <li key={ album.collectionId }>
                       <Link
-                        key={ album.collectionName }
                         to={ `/album/${album.collectionId}` }
                         data-testid={ `link-to-album-${album.collectionId}` }
                       >
