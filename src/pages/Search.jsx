@@ -10,8 +10,8 @@ class Search extends Component {
       isButtonDisabled: true,
       inputName: '',
       loading: false,
-      resultAlbum: [],
       resultInput: '',
+      resultAlbum: [],
     };
   }
 
@@ -32,6 +32,7 @@ class Search extends Component {
     const { inputName } = this.state;
 
     this.setState({
+      isButtonDisabled: true,
       resultInput: inputName,
       inputName: '',
       loading: true,
@@ -42,8 +43,6 @@ class Search extends Component {
         resultAlbum: searchAlbum,
         loading: false,
         artistLoading: true,
-      }, () => {
-
       });
     });
   };
@@ -58,6 +57,10 @@ class Search extends Component {
       resultInput,
     } = this.state;
     const resultElement = `Resultado de álbuns de: ${resultInput}`;
+    const albumNotFound = (
+      <p>
+        Nenhum álbum foi encontrado
+      </p>);
     return (
       <div data-testid="page-search">
         <Header />
@@ -84,13 +87,19 @@ class Search extends Component {
             </form>
           )}
         { artistLoading && resultElement }
-        <ul>
-          {resultAlbum
-            .map((album) => (
-              <li key={ album.collectionName }>
-                {album.collectionName}
-              </li>))}
-        </ul>
+        {
+          resultAlbum.length >= 1
+            ? (
+              <ul>
+                {resultAlbum
+                  .map((album) => (
+                    <li key={ album.collectionName }>
+                      {album.collectionName}
+                    </li>))}
+              </ul>
+            )
+            : albumNotFound
+        }
 
       </div>
     );
