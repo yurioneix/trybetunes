@@ -11,7 +11,7 @@ class Search extends Component {
       inputName: '',
       loading: false,
       resultInput: '',
-      resultAlbum: [],
+      resultAlbum: false,
     };
   }
 
@@ -87,8 +87,8 @@ class Search extends Component {
             </form>
           )}
         { artistLoading && resultElement }
-        {
-          resultAlbum.length >= 1
+        { resultAlbum
+          && (resultAlbum.length >= 1
             ? (
               <ul>
                 {resultAlbum
@@ -98,8 +98,7 @@ class Search extends Component {
                     </li>))}
               </ul>
             )
-            : albumNotFound
-        }
+            : albumNotFound)}
 
       </div>
     );
