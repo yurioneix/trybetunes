@@ -5,9 +5,8 @@ import getMusics from '../services/musicsAPI';
 
 class Album extends Component {
   async componentDidMount() {
-    const { match } = this.props;
-    console.log(match);
-    await getMusics();
+    const { match: { params: { id } } } = this.props;
+    console.log(await getMusics(id));
   }
 
   render() {
