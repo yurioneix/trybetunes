@@ -39,6 +39,7 @@ class Album extends Component {
             previewURL={ music.previewUrl }
             songName={ music.trackName }
             trackId={ music.trackId }
+            songData={ music }
           />
         ))}
       </div>
