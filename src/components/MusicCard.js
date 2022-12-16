@@ -4,19 +4,16 @@ import { addSong } from '../services/favoriteSongsAPI';
 import Loading from '../pages/Loading';
 
 class MusicCard extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      checkbox: false,
-      loading: false,
-    };
-  }
+  state = {
+    checkbox: false,
+    loading: false,
+  };
 
-  handleChange = async ({ target }) => {
+  handleChange = ({ target }) => {
     const { songData } = this.props;
-
+    const value = target.checked;
     this.setState({
-      checkbox: target.checked,
+      checkbox: value,
       loading: true,
     }, async () => {
       await addSong(songData);
