@@ -10,7 +10,12 @@ class MusicCard extends Component {
   };
 
   async componentDidMount() {
-    await getFavoriteSongs();
+    const { trackId } = this.props;
+    const favorites = await getFavoriteSongs();
+
+    this.setState({
+      checkbox: favorites.some((song) => song.trackId === trackId),
+    });
   }
 
   handleChange = ({ target }) => {
