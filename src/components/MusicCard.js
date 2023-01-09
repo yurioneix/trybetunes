@@ -10,8 +10,9 @@ class MusicCard extends Component {
   };
 
   handleChange = ({ target }) => {
-    const { songData } = this.props;
     const value = target.checked;
+    const { songData } = this.props;
+
     this.setState({
       checkbox: value,
       loading: true,
@@ -40,7 +41,7 @@ class MusicCard extends Component {
                 .
               </audio>
 
-              <label htmlFor="favoriteSong" data-testid={ `checkbox-music-${trackId}` }>
+              <label htmlFor="favoriteSong">
                 {' '}
                 Favorita
                 <input
@@ -48,6 +49,7 @@ class MusicCard extends Component {
                   id="favoriteSong"
                   onChange={ this.handleChange }
                   checked={ checkbox }
+                  data-testid={ `checkbox-music-${trackId}` }
                 />
               </label>
             </>
