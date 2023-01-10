@@ -38,7 +38,6 @@ class MusicCard extends Component {
     const { previewURL, songName, trackId } = this.props;
     const { checkbox, loading } = this.state;
     return (
-
       <div>
         { loading ? <Loading />
           : (
