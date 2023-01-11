@@ -27,10 +27,12 @@ class MusicCard extends Component {
       loading: true,
     }, async () => {
       await addSong(songData);
-      await removeSong(songData);
       this.setState({
         loading: false,
       });
+      if (!value) {
+        await removeSong(songData);
+      }
     });
   };
 
