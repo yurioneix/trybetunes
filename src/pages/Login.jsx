@@ -38,10 +38,13 @@ class Login extends Component {
   render() {
     const { isButtonDisabled, inputName, loading } = this.state;
     return (
-      <div data-testid="page-login">
+      <div
+        data-testid="page-login"
+        className="border-solid border-2 border-red-600 p-10"
+      >
         { loading ? <Loading />
           : (
-            <form>
+            <form className="container p-10 border-2 border-blue-600 p-2">
               <h1>Login</h1>
               <input
                 type="text"
@@ -49,12 +52,15 @@ class Login extends Component {
                 onChange={ this.handleChange }
                 name="inputName"
                 value={ inputName }
+                placeholder="Email"
+                className="flex border-b-2"
               />
               <button
                 disabled={ isButtonDisabled }
                 type="submit"
                 data-testid="login-submit-button"
                 onClick={ this.handleButton }
+                className="border-solid border-2 border-indigo-600 rounded-xl p-2"
               >
                 Entrar
               </button>
