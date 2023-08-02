@@ -58,7 +58,7 @@ class Search extends Component {
       resultInput,
     } = this.state;
     const resultElement = (
-      <p className="text-center mb-10">
+      <p className=" mt-5 text-center mb-10 bg-white font-md rounded-md shadow-md p-2">
         {' '}
         Resultado de álbuns de:
         {' '}
@@ -66,49 +66,70 @@ class Search extends Component {
       </p>
     );
     const albumNotFound = (
-      <p>
+      <p className="text-red-500 bg-white font-md rounded-md shadow-md p-2">
         Nenhum álbum foi encontrado
       </p>);
     return (
-      <div data-testid="page-search">
+      <div data-testid="page-search" className="flex flex-col">
         <Header />
-        <h1 className="text-center p-5 text-lg mt-10">Pesquisar artista/banda</h1>
-        { loading ? <Loading />
-          : (
-            <form
-              action=""
-              className="
-              p-5 flex
-              justify-center
-              items-center
-              gap-2
-              "
-            >
-              <input
-                type="text"
-                name="inputName"
-                value={ inputName }
-                id="btn-submit"
-                onChange={ this.handleChange }
-                data-testid="search-artist-input"
-                className="border-2 p-3 rounded-lg shadow-sl"
-              />
-              <button
-                type="submit"
-                data-testid="search-artist-button"
-                disabled={ isButtonDisabled }
-                onClick={ this.handleButton }
-                className={
-                  isButtonDisabled
-                    ? `
+        <div
+          className="
+            bg-gradient-to-r
+          from-indigo-600
+          via-blue-500
+          to-cyan-500
+            min-h-screen
+            flex
+            flex-col
+            items-center
+          "
+        >
+          { loading ? <Loading />
+            : (
+              <form
+                action=""
+                className="
+                  p-5
+                  flex
+                  flex-col
+                  justify-center
+                  items-center
+                  gap-2
+                  bg-white
+                  w-1/6
+                  rounded-xl
+                  shadow-xl
+                  mt-10
+                "
+              >
+                <h1 className="text-center p-5 text-lg mt-10">Pesquisar artista/banda</h1>
+                <input
+                  type="text"
+                  name="inputName"
+                  value={ inputName }
+                  id="btn-submit"
+                  onChange={ this.handleChange }
+                  data-testid="search-artist-input"
+                  className="border-2 p-3 rounded-lg shadow-sl"
+                />
+                <button
+                  type="submit"
+                  data-testid="search-artist-button"
+                  disabled={ isButtonDisabled }
+                  onClick={ this.handleButton }
+                  className={
+                    isButtonDisabled
+                      ? `
                     font-sans 
                     border-solid 
                     border-2 
                     border-indigo-6 
                     rounded-xl 
                     p-3 
-                    shadow-lg`
-                    : `
+                    shadow-lg
+                    hover:scale-110
+                    `
+                      : `
                     font-sans 
                     text-white 
                     border-solid 
@@ -117,20 +138,22 @@ class Search extends Component {
                     rounded-xl 
                     p-3 
                     shadow-lg
+                    hover:scale-110
                     `
-                }
-              >
-                Pesquisar
-              </button>
-            </form>
-          )}
-        { artistLoading && resultElement }
-        { resultAlbum
+                  }
+                >
+                  Pesquisar
+                </button>
+              </form>
+            )}
+          { artistLoading && resultElement }
+          { resultAlbum
           && (resultAlbum.length >= 1
             ? (
-              <ul
-                className="
-                 p-3
+              <div className="flex justify-center shadow-md p-2">
+                <ul
+                  className="
+                 p-5
                  grid
                  grid-rows-5
                  grid-flow-col
@@ -138,28 +161,37 @@ class Search extends Component {
                  justify-center
                  border-2
                  border-solid
-                 rounded-xl"
-              >
-                {resultAlbum
-                  .map((album) => (
-                    <li key={ album.collectionId } className="hover:scale-110">
-                      <Link
-                        to={ `/album/${album.collectionId}` }
-                        data-testid={ `link-to-album-${album.collectionId}` }
-                        className="text-lg hover:text-cyan-500"
-                      >
-                        <img
-                          src={ album.artworkUrl100 }
-                          alt="Album Cover"
-                        />
-                        <p>
-                          {album.collectionName}
-                        </p>
-                      </Link>
-                    </li>))}
-              </ul>
+                 rounded-xl
+                 w-3/4
+                 bg-white
+                 mb-10
+                 "
+                >
+                  {
+                    resultAlbum
+                      .map((album) => (
+                        <li key={ album.collectionId } className="hover:scale-110">
+                          <Link
+                            to={ `/album/${album.collectionId}` }
+                            data-testid={ `link-to-album-${album.collectionId}` }
+                            className="text-lg hover:text-cyan-500 flex-column"
+                          >
+                            <img
+                              src={ album.artworkUrl100 }
+                              alt="Album Cover"
+                              className="m-auto"
+                            />
+                            <p className="text-center">
+                              {album.collectionName}
+                            </p>
+                          </Link>
+                        </li>))
+                  }
+                </ul>
+              </div>
             )
             : albumNotFound)}
+        </div>
 
       </div>
     );
