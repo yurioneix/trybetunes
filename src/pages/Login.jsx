@@ -59,14 +59,14 @@ class Login extends Component {
             bg-white p-20 rounded-2xl shadow-lg text-center"
           >
             <img src={ logo } alt="Trybetunes Logo" className="p-10 m-auto mb-2" />
-            <h1>Digite seu nome</h1>
+            <h1 className="mb-2 text-lg ">Digite seu nome</h1>
             <input
               type="text"
               data-testid="login-name-input"
               onChange={ this.handleChange }
               name="inputName"
               value={ inputName }
-              placeholder="Nome"
+              placeholder="Mínimo 3 caracteres"
               className="border-b-2 p-2 mb-2"
             />
             <button
@@ -76,8 +76,8 @@ class Login extends Component {
               onClick={ this.handleButton }
               className={
                 isButtonDisabled
-                  ? 'font-sans flex m-auto border-solid border-2 border-indigo-6 rounded-xl p-5 shadow'
-                  : 'font-sans text-white flex m-auto bg-indigo-600 rounded-xl p-5 shadow'
+                  ? 'font-sans flex m-auto border-solid border-2 border-indigo-6 rounded-xl p-5 shadow-lg'
+                  : 'font-sans text-white border-solid border-2 flex m-auto bg-indigo-600 rounded-xl p-5 shadow-lg'
               }
             >
               Entrar
