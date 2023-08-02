@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
 import Loading from './Loading';
+import logo from '../img/logo.svg';
 
 class Login extends Component {
   constructor(props) {
@@ -19,7 +21,7 @@ class Login extends Component {
     const value = target.type === 'checkbox' ? target.checked : target.value;
 
     this.setState({
-      isButtonDisabled: (value.length < minLength),
+      isButtonDisabled: value.length < minLength,
       [name]: value,
     });
   };
@@ -38,27 +40,50 @@ class Login extends Component {
   render() {
     const { isButtonDisabled, inputName, loading } = this.state;
     return (
-      <div data-testid="page-login">
-        { loading ? <Loading />
-          : (
-            <form>
-              <h1>Login</h1>
-              <input
-                type="text"
-                data-testid="login-name-input"
-                onChange={ this.handleChange }
-                name="inputName"
-                value={ inputName }
-              />
-              <button
-                disabled={ isButtonDisabled }
-                type="submit"
-                data-testid="login-submit-button"
-                onClick={ this.handleButton }
-              >
-                Entrar
-              </button>
-            </form>)}
+      <div
+        data-testid="page-login"
+        className="
+         bg-gradient-to-r
+       from-indigo-600
+       to-cyan-500
+         min-h-screen
+         flex
+         items-center
+         justify-center"
+      >
+        {loading ? (
+          <Loading />
+        ) : (
+          <form
+            className="
+            bg-white p-20 rounded-2xl shadow-lg text-center"
+          >
+            <img src={ logo } alt="Trybetunes Logo" className="p-10 m-auto mb-2" />
+            <h1>Digite seu nome</h1>
+            <input
+              type="text"
+              data-testid="login-name-input"
+              onChange={ this.handleChange }
+              name="inputName"
+              value={ inputName }
+              placeholder="Nome"
+              className="border-b-2 p-2 mb-2"
+            />
+            <button
+              disabled={ isButtonDisabled }
+              type="submit"
+              data-testid="login-submit-button"
+              onClick={ this.handleButton }
+              className={
+                isButtonDisabled
+                  ? 'font-sans flex m-auto border-solid border-2 border-indigo-6 rounded-xl p-5 shadow'
+                  : 'font-sans text-white flex m-auto bg-indigo-600 rounded-xl p-5 shadow'
+              }
+            >
+              Entrar
+            </button>
+          </form>
+        )}
       </div>
     );
   }
