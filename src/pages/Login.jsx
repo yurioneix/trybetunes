@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { createUser } from '../services/userAPI';
@@ -41,32 +42,43 @@ class Login extends Component {
     return (
       <div
         data-testid="page-login"
-        className=" bg-stone-200 min-h-screen flex items-center justify-center"
+        className="
+         bg-gradient-to-r
+       from-indigo-600
+       to-cyan-500
+         min-h-screen
+         flex
+         items-center
+         justify-center"
       >
         {loading ? (
           <Loading />
         ) : (
           <form
             className="
-            bg-white p-20 rounded-2xl shadow-lg"
+            bg-white p-20 rounded-2xl shadow-lg text-center"
           >
-            <img src={ logo } alt="Trybetunes Logo" />
-            <h1>Login</h1>
+            <img src={ logo } alt="Trybetunes Logo" className="p-10 m-auto mb-2" />
+            <h1>Digite seu nome</h1>
             <input
               type="text"
               data-testid="login-name-input"
               onChange={ this.handleChange }
               name="inputName"
               value={ inputName }
-              placeholder="Email"
-              className="flex border-b-2"
+              placeholder="Nome"
+              className="border-b-2 p-2 mb-2"
             />
             <button
               disabled={ isButtonDisabled }
               type="submit"
               data-testid="login-submit-button"
               onClick={ this.handleButton }
-              className="border-solid border-2 border-indigo-600 rounded-xl p-2"
+              className={
+                isButtonDisabled
+                  ? 'font-sans flex m-auto border-solid border-2 border-indigo-6 rounded-xl p-5 shadow'
+                  : 'font-sans text-white flex m-auto bg-indigo-600 rounded-xl p-5 shadow'
+              }
             >
               Entrar
             </button>
