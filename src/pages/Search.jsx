@@ -57,7 +57,14 @@ class Search extends Component {
       artistLoading,
       resultInput,
     } = this.state;
-    const resultElement = `Resultado de álbuns de: ${resultInput}`;
+    const resultElement = (
+      <p className="text-center mb-10">
+        {' '}
+        Resultado de álbuns de:
+        {' '}
+        {resultInput}
+      </p>
+    );
     const albumNotFound = (
       <p>
         Nenhum álbum foi encontrado
@@ -65,10 +72,18 @@ class Search extends Component {
     return (
       <div data-testid="page-search">
         <Header />
-        <h1>Search</h1>
+        <h1 className="text-center p-5 text-lg mt-10">Pesquisar artista/banda</h1>
         { loading ? <Loading />
           : (
-            <form action="">
+            <form
+              action=""
+              className="
+              p-5 flex
+              justify-center
+              items-center
+              gap-2
+              "
+            >
               <input
                 type="text"
                 name="inputName"
@@ -76,12 +91,34 @@ class Search extends Component {
                 id="btn-submit"
                 onChange={ this.handleChange }
                 data-testid="search-artist-input"
+                className="border-2 p-3 rounded-lg shadow-sl"
               />
               <button
                 type="submit"
                 data-testid="search-artist-button"
                 disabled={ isButtonDisabled }
                 onClick={ this.handleButton }
+                className={
+                  isButtonDisabled
+                    ? `
+                    font-sans 
+                    border-solid 
+                    border-2 
+                    border-indigo-6 
+                    rounded-xl 
+                    p-3 
+                    shadow-lg`
+                    : `
+                    font-sans 
+                    text-white 
+                    border-solid 
+                    border-2 
+                    bg-indigo-600 
+                    rounded-xl 
+                    p-3 
+                    shadow-lg
+                    `
+                }
               >
                 Pesquisar
               </button>
@@ -91,15 +128,33 @@ class Search extends Component {
         { resultAlbum
           && (resultAlbum.length >= 1
             ? (
-              <ul>
+              <ul
+                className="
+                 p-3
+                 grid
+                 grid-rows-5
+                 grid-flow-col
+                 gap-10
+                 justify-center
+                 border-2
+                 border-solid
+                 rounded-xl"
+              >
                 {resultAlbum
                   .map((album) => (
-                    <li key={ album.collectionId }>
+                    <li key={ album.collectionId } className="hover:scale-110">
                       <Link
                         to={ `/album/${album.collectionId}` }
                         data-testid={ `link-to-album-${album.collectionId}` }
+                        className="text-lg hover:text-cyan-500"
                       >
-                        {album.collectionName}
+                        <img
+                          src={ album.artworkUrl100 }
+                          alt="Album Cover"
+                        />
+                        <p>
+                          {album.collectionName}
+                        </p>
                       </Link>
                     </li>))}
               </ul>
