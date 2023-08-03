@@ -41,10 +41,11 @@ class Album extends Component {
           to-cyan-500
           text-white
           gap-3
+          p-10
           "
         >
           <h1 data-testid="artist-name">{artist}</h1>
-          <div className="bg-white rounded-md">
+          <div className="bg-white rounded-sm p-10 shadow-xl">
             <img src={ musics[0]?.artworkUrl100 } alt="Album Cover" />
           </div>
           <p data-testid="album-name">{band}</p>

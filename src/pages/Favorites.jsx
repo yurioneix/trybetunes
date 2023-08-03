@@ -12,7 +12,6 @@ class Favorites extends Component {
 
   async componentDidMount() {
     const favorites = await getFavoriteSongs();
-    console.log(await getFavoriteSongs());
     this.setState({
       loading: true,
       favoriteSongs: favorites,
@@ -27,9 +26,26 @@ class Favorites extends Component {
       <div>
         { loading ? <Loading />
           : (
-            <div data-testid="page-favorites">
+            <div>
               <Header />
-              <h1>FAvorites</h1>
+              <div
+                data-testid="page-favorites"
+                className="
+                flex flex-col
+                items-center
+                text-xl
+                bg-gradient-to-r
+              from-indigo-600
+              via-blue-500
+              to-cyan-500
+              text-white
+                gap-3
+                p-20
+
+            "
+              >
+                <h1>Músicas favoritas ⭐</h1>
+              </div>
               {favoriteSongs.map((favoriteSong) => (
                 <MusicCard
                   key={ favoriteSong.trackId }
