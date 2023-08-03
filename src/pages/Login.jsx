@@ -11,6 +11,9 @@ class Login extends Component {
     this.state = {
       isButtonDisabled: true,
       inputName: '',
+      inputEmail: '',
+      inputImage: '',
+      inputFavoriteGender: '',
       loading: false,
     };
   }
@@ -30,15 +33,20 @@ class Login extends Component {
     event.preventDefault();
     const { history } = this.props;
 
-    const { inputName } = this.state;
+    const { inputName, inputEmail, inputImage, inputFavoriteGender } = this.state;
 
     this.setState({ loading: true });
-    await createUser({ name: inputName });
+    await createUser({
+      name: inputName,
+      email: inputEmail,
+      image: inputImage,
+      description: inputFavoriteGender,
+    });
     history.push('/search');
   };
 
   render() {
-    const { isButtonDisabled, inputName, loading } = this.state;
+    const { isButtonDisabled, inputName, inputEmail, inputImage, inputFavoriteGender, loading } = this.state;
     return (
       <div
         data-testid="page-login"
@@ -56,19 +64,56 @@ class Login extends Component {
         ) : (
           <form
             className="
-            bg-white p-20 rounded-2xl shadow-lg text-center"
+            bg-white p-20 rounded-2xl shadow-lg text-center flex flex-col"
           >
             <img src={ logo } alt="Trybetunes Logo" className="p-10 m-auto mb-2" />
-            <h1 className="mb-2 text-lg ">Digite seu nome</h1>
-            <input
-              type="text"
-              data-testid="login-name-input"
-              onChange={ this.handleChange }
-              name="inputName"
-              value={ inputName }
-              placeholder="Mínimo 3 caracteres"
-              className="border-b-2 p-2 mb-2"
-            />
+            <h1 className="mb-2 text-lg ">Dados de perfil</h1>
+            <label htmlFor="name">
+              <input
+                id="name"
+                type="text"
+                data-testid="login-name-input"
+                onChange={ this.handleChange }
+                name="inputName"
+                value={ inputName }
+                placeholder="Nome (mínimo 3 caracteres)"
+                className="border-b-2 p-2 mb-2"
+              />
+
+            </label>
+            <label htmlFor="email">
+              <input
+                id="email"
+                type="email"
+                onChange={ this.handleChange }
+                name="inputEmail"
+                value={ inputEmail }
+                placeholder="Email"
+                className="border-b-2 p-2 mb-2"
+              />
+            </label>
+            <label htmlFor="image">
+              <input
+                id="image"
+                type="text"
+                onChange={ this.handleChange }
+                name="inputImage"
+                value={ inputImage }
+                placeholder="Foto de perfil (URL)"
+                className="border-b-2 p-2 mb-2"
+              />
+            </label>
+            <label htmlFor="favoriteGender">
+              <input
+                id="favoriteGender"
+                type="text"
+                onChange={ this.handleChange }
+                name="inputFavoriteGender"
+                value={ inputFavoriteGender }
+                placeholder="Gênero musical favorito"
+                className="border-b-2 p-2 mb-2"
+              />
+            </label>
             <button
               disabled={ isButtonDisabled }
               type="submit"
