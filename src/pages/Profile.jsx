@@ -9,7 +9,6 @@ class Profile extends Component {
 
   async componentDidMount() {
     const user = await getUser();
-    console.log(user);
     this.setState({
       user,
     });
@@ -33,7 +32,7 @@ class Profile extends Component {
                 p-20
             "
         >
-          <h1 className="text-xxl">Perfil</h1>
+          <h1 className="text-2xl text-center">Perfil</h1>
         </section>
         <div className="flex justify-center">
           <section
@@ -42,29 +41,37 @@ class Profile extends Component {
             flex-col
             items-center
             text-xl
-            mt-20
+            mt-10
             border-2
             rounded-xl
             shadow-xl
             bg-stone-100
             w-1/4
-            p-20
+            p-10
             "
           >
-            <p>
-              Foto de perfil:
-            </p>
-            <img src={ user.image } alt="Profile" />
-            <p>
-              Usuário:
-              {' '}
-              {user.name}
-            </p>
-            <p>
-              Email:
-              {' '}
-              {user.email}
-            </p>
+            <img src={ user.image } alt="Profile" className="rounded-full p-2 mb-2" />
+            <section className="flex flex-col items-center gap-2">
+              <p>
+                Usuário:
+                {' '}
+                {user.name}
+              </p>
+              <hr className="border-1 border-solid border-stone-300 w-1/2" />
+              <p>
+                Email:
+                {' '}
+                {user.email}
+              </p>
+              <hr className="border-1 border-solid border-stone-300 w-1/2" />
+              <p>
+                Gênero favorito:
+                {' '}
+                {user.description}
+              </p>
+              <hr className="border-1 border-solid border-stone-300 w-1/2" />
+            </section>
+
           </section>
         </div>
       </div>
