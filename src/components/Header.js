@@ -11,6 +11,7 @@ class Header extends Component {
     this.state = {
       loading: false,
       userName: '',
+      profilePhoto: '',
     };
   }
 
@@ -22,12 +23,13 @@ class Header extends Component {
       this.setState({
         loading: false,
         userName: user.name,
+        profilePhoto: user.image,
       });
     });
   }
 
   render() {
-    const { loading, userName } = this.state;
+    const { loading, userName, profilePhoto } = this.state;
     return (
       <div className="flex-row">
         {
@@ -43,10 +45,15 @@ class Header extends Component {
                 text-lg
                 "
               >
-                <div className="flex-row">
-                  <img src={ profileLogo } alt="Profile logo" />
+                <div className="flex-row h-24 w-24">
+                  <img
+                    src={ profilePhoto || profileLogo }
+                    alt="Profile logo"
+                    className="rounded-full"
+                  />
                   <p
                     data-testid="header-user-name"
+                    className="text-center"
                   >
                     {userName}
                   </p>
