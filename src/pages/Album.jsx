@@ -30,9 +30,25 @@ class Album extends Component {
     return (
       <div data-testid="page-album">
         <Header />
-        <h1>Album</h1>
-        <p data-testid="artist-name">{artist}</p>
-        <p data-testid="album-name">{band}</p>
+        <div
+          className="
+          flex flex-col
+          items-center
+          text-xl
+          bg-gradient-to-r
+          from-indigo-600
+          via-blue-500
+          to-cyan-500
+          text-white
+          gap-3
+          "
+        >
+          <h1 data-testid="artist-name">{artist}</h1>
+          <div className="bg-white rounded-md">
+            <img src={ musics[0]?.artworkUrl100 } alt="Album Cover" />
+          </div>
+          <p data-testid="album-name">{band}</p>
+        </div>
         { musics.map((music) => (
           <MusicCard
             key={ music.trackId }
