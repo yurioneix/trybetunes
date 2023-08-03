@@ -58,7 +58,7 @@ class Search extends Component {
       resultInput,
     } = this.state;
     const resultElement = (
-      <p className=" mt-5 text-center mb-10 bg-white font-md rounded-md shadow-md p-2">
+      <p className=" mt-5 text-center mb-10 bg-white font-md rounded-md shadow-xl p-2">
         {' '}
         Resultado de álbuns de:
         {' '}
@@ -127,7 +127,7 @@ class Search extends Component {
                     rounded-xl 
                     p-3 
                     shadow-lg
-                    hover:scale-110
+                    opacity-75
                     `
                       : `
                     font-sans 
@@ -150,9 +150,8 @@ class Search extends Component {
           { resultAlbum
           && (resultAlbum.length >= 1
             ? (
-              <div className="flex justify-center shadow-md p-2">
-                <ul
-                  className="
+              <ul
+                className="
                  p-5
                  grid
                  grid-rows-5
@@ -165,30 +164,30 @@ class Search extends Component {
                  w-3/4
                  bg-white
                  mb-10
+                 shadow-xl
                  "
-                >
-                  {
-                    resultAlbum
-                      .map((album) => (
-                        <li key={ album.collectionId } className="hover:scale-110">
-                          <Link
-                            to={ `/album/${album.collectionId}` }
-                            data-testid={ `link-to-album-${album.collectionId}` }
-                            className="text-lg hover:text-cyan-500 flex-column"
-                          >
-                            <img
-                              src={ album.artworkUrl100 }
-                              alt="Album Cover"
-                              className="m-auto"
-                            />
-                            <p className="text-center">
-                              {album.collectionName}
-                            </p>
-                          </Link>
-                        </li>))
-                  }
-                </ul>
-              </div>
+              >
+                {
+                  resultAlbum
+                    .map((album) => (
+                      <li key={ album.collectionId } className="hover:scale-110">
+                        <Link
+                          to={ `/album/${album.collectionId}` }
+                          data-testid={ `link-to-album-${album.collectionId}` }
+                          className="text-lg hover:text-cyan-500 flex-column"
+                        >
+                          <img
+                            src={ album.artworkUrl100 }
+                            alt="Album Cover"
+                            className="m-auto"
+                          />
+                          <p className="text-center">
+                            {album.collectionName}
+                          </p>
+                        </Link>
+                      </li>))
+                }
+              </ul>
             )
             : albumNotFound)}
         </div>

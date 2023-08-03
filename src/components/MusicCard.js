@@ -40,19 +40,35 @@ class MusicCard extends Component {
     const { previewURL, songName, trackId } = this.props;
     const { checkbox, loading } = this.state;
     return (
-      <div>
+      <div
+        className="
+        flex
+        items-center
+        justify-center
+        gap-10
+        mt-10
+        "
+      >
         { loading ? <Loading />
           : (
-            <>
-              <p>{songName}</p>
-              <audio data-testid="audio-component" src={ previewURL } controls>
+            <div
+              className="
+            p-50
+            "
+            >
+              <p className="max-w-sl text-center">{songName}</p>
+              <audio
+                data-testid="audio-component"
+                src={ previewURL }
+                controls
+                className="m-auto"
+              >
                 <track kind="captions" />
                 O seu navegador não suporta o elemento
                 <code>audio</code>
                 .
               </audio>
-
-              <label htmlFor="favoriteSong">
+              <label htmlFor="favoriteSong" className="flex justify-center gap-2">
                 {' '}
                 Favorita
                 <input
@@ -63,7 +79,8 @@ class MusicCard extends Component {
                   data-testid={ `checkbox-music-${trackId}` }
                 />
               </label>
-            </>
+              <hr className="border-1 border-solid border-stone-200 max-w-md mt-5" />
+            </div>
           )}
       </div>
     );
