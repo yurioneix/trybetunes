@@ -44,7 +44,7 @@ class Favorites extends Component {
 
             "
               >
-                <h1>Músicas favoritas ⭐</h1>
+                <h1 className="text-2xl text-center">Músicas favoritas ⭐</h1>
               </div>
               {favoriteSongs.map((favoriteSong) => (
                 <MusicCard
